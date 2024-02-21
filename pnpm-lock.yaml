@@ -53,6 +53,9 @@ dependencies:
   three:
     specifier: 0.161.0
     version: 0.161.0
+  tslib:
+    specifier: 2.6.2
+    version: 2.6.2
   zustand:
     specifier: ^4.5.0
     version: 4.5.1(@types/react@18.2.33)(react@18.2.0)
@@ -109,6 +112,9 @@ devDependencies:
   '@types/google.maps':
     specifier: 3.55.3
     version: 3.55.3
+  '@types/googlemaps':
+    specifier: 3.43.3
+    version: 3.43.3
   '@types/node':
     specifier: 18.16.9
     version: 18.16.9
@@ -3226,6 +3232,11 @@ packages:
 
   /@types/google.maps@3.55.3:
     resolution: {integrity: sha512-UF1nfj8h/Vj4wEcdjv5v314HkDB6AWaN34Fr/u+6Oaj+GSRlG+k4c3DnJNKv7S23RvDdvIPt4ON6ONJpzNnarA==}
+    dev: true
+
+  /@types/googlemaps@3.43.3:
+    resolution: {integrity: sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg==}
+    deprecated: 'Types for the Google Maps browser API have moved to @types/google.maps. Note: these types are not for the googlemaps npm package, which is a Node API.'
     dev: true
 
   /@types/http-cache-semantics@4.0.4:
@@ -7957,7 +7968,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: true
 
   /tunnel-rat@0.1.2(@types/react@18.2.33)(react@18.2.0):
     resolution: {integrity: sha512-lR5VHmkPhzdhrM092lI2nACsLO4QubF0/yoOhzX7c+wIpbN1GjHNzCc91QlpxBi+cnx8vVJ+Ur6vL5cEoQPFpQ==}

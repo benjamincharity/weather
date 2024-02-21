@@ -1,7 +1,7 @@
-import { Outlet } from "@tanstack/react-router";
-import { SingleForecast } from "./SingleForecast.tsx";
-import { useLocationQuery } from "@hooks/useLocationQuery.ts";
-import { CompareLocationsLink } from "@ui/CompareLocationsLink.tsx";
+import { Outlet } from '@tanstack/react-router';
+import { SingleForecast } from './SingleForecast';
+import { useLocationQuery } from '@hooks/useLocationQuery';
+import { CompareLocationsLink } from '@ui/CompareLocationsLink';
 
 export interface SearchState {
   location: string;
@@ -23,17 +23,17 @@ const Forecast = () => {
   const { location1, setLocation, isCompareRoute } = useLocationQuery();
 
   return (
-    <div className={"relative z-20 text-center h-full"}>
+    <div className={'relative z-20 text-center h-full'}>
       <div
         className={`outline-4 outline-amber-600 grid grid-rows-1 grid-cols-2 h-full`}
       >
         <div
-          className={`column-1 ${isCompareRoute ? "col-span-1" : "col-span-2"}`}
+          className={`column-1 ${isCompareRoute ? 'col-span-1' : 'col-span-2'}`}
         >
           <SingleForecast
             header={
               !isCompareRoute && (
-                <div className={"relative z-20 mb-4"}>
+                <div className={'relative z-20 mb-4'}>
                   <CompareLocationsLink />
                 </div>
               )
@@ -43,7 +43,7 @@ const Forecast = () => {
           />
         </div>
 
-        <div className={"column-2"}>
+        <div className={'column-2'}>
           <Outlet />
         </div>
       </div>

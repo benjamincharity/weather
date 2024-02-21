@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import type {
   WeatherGeoLocation,
   WeatherLabeledGeo,
-} from "@common/types/types.weather.ts";
+} from '@common/types/types.weather';
 
 /**
  * Hook to convert a geographical location to a place.
@@ -26,9 +26,9 @@ export function useGeoToPlace(weatherGeoLocation: WeatherGeoLocation | null): {
       const latLng = { lat: location.latitude, lng: location.longitude };
       geocoder.geocode({ location: latLng }, (results, status) => {
         const msg =
-          status === "INVALID_REQUEST"
-            ? "Invalid lat/long"
-            : "Geocoder failed due to: " + status;
+          status === 'INVALID_REQUEST'
+            ? 'Invalid lat/long'
+            : 'Geocoder failed due to: ' + status;
         if (
           status === google.maps.GeocoderStatus.OK &&
           !!results?.length &&
@@ -45,7 +45,7 @@ export function useGeoToPlace(weatherGeoLocation: WeatherGeoLocation | null): {
             });
           }
         } else {
-          console.error("Geocoder failed due to: " + status);
+          console.error('Geocoder failed due to: ' + status);
           setError(new Error(msg));
           if (isSubscribed) {
             setLocation(null);
@@ -54,7 +54,7 @@ export function useGeoToPlace(weatherGeoLocation: WeatherGeoLocation | null): {
       });
     };
 
-    if (!!weatherGeoLocation) {
+    if (weatherGeoLocation) {
       reverseGeocode(weatherGeoLocation);
     }
 
@@ -84,18 +84,18 @@ interface ResponseItem {
  * @returns - The city and state.
  */
 function getCityAndState(
-  data: ResponseItem[],
+  data: ResponseItem[]
 ): { city: string; state: string } | null {
   const locationData = {
-    city: "",
-    state: "",
+    city: '',
+    state: '',
   };
 
   for (const item of data) {
     for (const component of item.address_components) {
-      if (component.types.includes("locality")) {
+      if (component.types.includes('locality')) {
         locationData.city = component.long_name;
-      } else if (component.types.includes("administrative_area_level_1")) {
+      } else if (component.types.includes('administrative_area_level_1')) {
         locationData.state = component.short_name; // Use short_name for state abbreviation
       }
 

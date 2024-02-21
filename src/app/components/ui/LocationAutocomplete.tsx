@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import type { WeatherLabeledGeo } from "@common/types/types.weather.ts";
+/// <reference types="@types/googlemaps" />
+import { useState, useEffect, useRef } from 'react';
+import type { WeatherLabeledGeo } from '@common/types/types.weather';
 
 export interface LocationAutocompleteProps {
   onSelection: (location: WeatherLabeledGeo) => void;
@@ -8,11 +9,11 @@ export interface LocationAutocompleteProps {
 
 export const LocationAutocomplete = ({
   onSelection,
-  value = "",
+  value = '',
 }: LocationAutocompleteProps) => {
   const [input, setInput] = useState(() => value);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setInput(value);
@@ -21,14 +22,14 @@ export const LocationAutocomplete = ({
   useEffect(() => {
     const inputElement = inputRef.current!;
     const autocomplete = new google.maps.places.Autocomplete(inputElement);
-    autocomplete.addListener("place_changed", () => {
+    autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       if (!place.geometry || !place.geometry.location) {
-        setError("Unable to find location. Please try another address.");
+        setError('Unable to find location. Please try another address.');
         return;
       }
       const location: WeatherLabeledGeo = {
-        label: place.formatted_address ?? "No label",
+        label: place.formatted_address ?? 'No label',
         latitude: place.geometry.location.lat(),
         longitude: place.geometry.location.lng(),
       };
@@ -49,11 +50,11 @@ export const LocationAutocomplete = ({
           id="address-autocomplete"
           name="hs-search-box-with-loading-3"
           onChange={(e) => {
-            setError("");
+            setError('');
             setInput(e.target.value);
           }}
           onFocus={(e) => {
-            setError("");
+            setError('');
             e.target.select();
           }}
           placeholder="Enter location.."
@@ -64,7 +65,7 @@ export const LocationAutocomplete = ({
         />
         <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
           <svg
-            className={"w-[24px] h-[24px] fill-gray-400"}
+            className={'w-[24px] h-[24px] fill-gray-400'}
             viewBox="0 0 512 512"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -73,7 +74,7 @@ export const LocationAutocomplete = ({
         </div>
       </div>
       {!!error && (
-        <div className={"w-full text-left"}>
+        <div className={'w-full text-left'}>
           <p
             className="text-sm inline-block bg-white py-1 px-2 rounded-sm text-red-600 mt-2"
             id="hs-validation-name-error-helper"

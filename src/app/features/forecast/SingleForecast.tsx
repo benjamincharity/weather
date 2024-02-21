@@ -1,22 +1,19 @@
-import { LocationAutocomplete } from "@ui/LocationAutocomplete.tsx";
-import { CurrentWeatherHero } from "./CurrentWeatherHero.tsx";
-import { WeatherGeoLocation } from "@common/types/types.weather.ts";
-import { DaysForecast } from "./DaysForecast.tsx";
-import { ReactNode, useEffect, useMemo } from "react";
-import { useWeather } from "@hooks/useWeather.ts";
-import {
-  useWeatherAppearance,
-  WeatherData,
-} from "@hooks/useWeatherAppearance.ts";
-import { useGeoToPlace } from "@hooks/useGeoToPlace.tsx";
-import { SkyBackground } from "@ui/SkyBackground.tsx";
-import { Card } from "@ui/Card.tsx";
-import { NoSelectedLocation } from "./NoSelectedLocation.tsx";
-import { ForecastDetail } from "./ForecastDetail.tsx";
-import toast from "react-hot-toast";
-import { useNavigate } from "@tanstack/react-router";
+import toast from 'react-hot-toast';
+import { useNavigate } from '@tanstack/react-router';
+import { ReactNode, useEffect, useMemo } from 'react';
+import { LocationAutocomplete } from '@ui/LocationAutocomplete';
+import { CurrentWeatherHero } from './CurrentWeatherHero';
+import { WeatherGeoLocation } from '@common/types/types.weather';
+import { DaysForecast } from './DaysForecast';
+import { useWeather } from '@hooks/useWeather';
+import { useWeatherAppearance, WeatherData } from '@hooks/useWeatherAppearance';
+import { useGeoToPlace } from '@hooks/useGeoToPlace';
+import { SkyBackground } from '@ui/SkyBackground';
+import { Card } from '@ui/Card';
+import { NoSelectedLocation } from './NoSelectedLocation';
+import { ForecastDetail } from './ForecastDetail';
 
-const imageSize = "168px";
+const imageSize = '168px';
 
 interface SingleForecastProps {
   compareLocation?: WeatherGeoLocation | null;
@@ -33,14 +30,14 @@ export function SingleForecast({
   selectedLocation,
   setSelectedLocation,
 }: SingleForecastProps) {
-  const navigate = useNavigate({ from: "/forecast" });
+  const navigate = useNavigate({ from: '/forecast' });
   const { data, isLoading, isError, error } = useWeather(selectedLocation);
   const weatherData: WeatherData = useMemo(
     () => ({
       weatherCode: data?.current.weather_code ?? 0,
-      isDaytime: !!data?.current ? data?.current?.is_day === 1 : true,
+      isDaytime: data?.current ? data?.current?.is_day === 1 : true,
     }),
-    [data],
+    [data]
   );
   const { isRain, isDay } = useMemo(() => {
     return {
@@ -54,41 +51,41 @@ export function SingleForecast({
   const cloudColor = useMemo(() => {
     return isDay
       ? !isRain
-        ? "#F0F0F0"
-        : "#8C9EA3"
+        ? '#F0F0F0'
+        : '#8C9EA3'
       : !isRain
-        ? "#323A48"
-        : "#8C9EA3";
+      ? '#323A48'
+      : '#8C9EA3';
   }, [isDay, isRain]);
-  const opacityClass = useMemo(() => `opacity-${isDay ? "30" : "90"}`, [isDay]);
+  const opacityClass = useMemo(() => `opacity-${isDay ? '30' : '90'}`, [isDay]);
 
   useEffect(() => {
     if (isError) {
       toast.error(error?.message, {
-        id: "weather-error",
+        id: 'weather-error',
       });
     }
   }, [isError, error]);
 
   useEffect(() => {
-    if (!!placeError) {
+    if (placeError) {
       toast.error(placeError?.message, {
-        id: "place-error",
+        id: 'place-error',
       });
-      navigate({ to: "/forecast" });
+      navigate({ to: '/forecast' });
     }
   }, [placeError]);
 
   return (
     <section
       className={
-        "text-center px-2 lg:px-6 py-2 relative h-full overflow-y-auto"
+        'text-center px-2 lg:px-6 py-2 relative h-full overflow-y-auto'
       }
       style={{ backgroundColor }}
     >
       {header}
-      <div className={"relative z-10  flex flex-col gap-4"}>
-        <div className={"w-[500px] max-w-full mx-auto"}>
+      <div className={'relative z-10  flex flex-col gap-4'}>
+        <div className={'w-[500px] max-w-full mx-auto'}>
           <LocationAutocomplete
             onSelection={setSelectedLocation}
             value={place?.label}
@@ -96,15 +93,15 @@ export function SingleForecast({
         </div>
 
         {!!selectedLocation && !data && isLoading && (
-          <Card className={"bg-slate-900 bg-opacity-70 pb-4"}>
-            <figure className={"text-center"}>
+          <Card className={'bg-slate-900 bg-opacity-70 pb-4'}>
+            <figure className={'text-center'}>
               <img
                 alt="Weather icon"
                 src={`/weather/clear-day-fast.svg`}
-                className={"mx-auto"}
+                className={'mx-auto'}
                 style={{ height: imageSize, width: imageSize }}
               />
-              <figcaption className={"block text-white italic"}>
+              <figcaption className={'block text-white italic'}>
                 Loading...
               </figcaption>
             </figure>
@@ -113,7 +110,7 @@ export function SingleForecast({
 
         {!!selectedLocation && !!data && !isLoading && (
           <>
-            <div className={"flex flex-col gap-4 justify-center lg:flex-row"}>
+            <div className={'flex flex-col gap-4 justify-center lg:flex-row'}>
               <CurrentWeatherHero
                 imageSize={imageSize}
                 isLoading={isLoading}

@@ -1,9 +1,9 @@
-import { Card } from "@ui/Card.tsx";
+import { Card } from '@ui/Card';
 import {
   WeatherAPIResponse,
   WeatherLabeledGeo,
-} from "@common/types/types.weather.ts";
-import { useGetWeatherIcon } from "@hooks/useGetWeatherIcon.ts";
+} from '@common/types/types.weather';
+import { useGetWeatherIcon } from '@hooks/useGetWeatherIcon';
 
 interface CurrentWeatherHeroProps {
   imageSize?: string;
@@ -13,7 +13,7 @@ interface CurrentWeatherHeroProps {
 }
 
 export function CurrentWeatherHero({
-  imageSize = "72px",
+  imageSize = '72px',
   isLoading,
   place,
   weather,
@@ -22,11 +22,11 @@ export function CurrentWeatherHero({
   const tempString = `${weather?.current?.temperature_2m} ${weather?.current_units?.temperature_2m}`;
 
   return (
-    <Card className={"pb-6"}>
+    <Card className={'pb-6'}>
       {isLoading ? (
-        "LOADING"
+        'LOADING'
       ) : (
-        <div className={"flex justify-center align-middle"}>
+        <div className={'flex justify-center align-middle'}>
           <img
             alt="Weather icon"
             src={`/weather/${icon}`}
@@ -35,11 +35,11 @@ export function CurrentWeatherHero({
         </div>
       )}
 
-      <div className={"w-full text-3xl font-bold"}>{tempString}</div>
+      <div className={'w-full text-3xl font-bold'}>{tempString}</div>
       {(!!place?.city || !!place?.state) && (
-        <div className={"w-full text-base font-bold opacity-80"}>
+        <div className={'w-full text-base font-bold opacity-80'}>
           {place?.city}
-          {!!place?.city ? "," : ""} {place?.state}
+          {place?.city ? ',' : ''} {place?.state}
         </div>
       )}
     </Card>

@@ -1,11 +1,11 @@
-import { SingleForecast } from "./SingleForecast.tsx";
-import { useLocationQuery } from "@hooks/useLocationQuery.ts";
+import { SingleForecast } from './SingleForecast';
+import { useLocationQuery } from '@hooks/useLocationQuery';
 
 const ForecastCompare = () => {
   const { location1, location2, setLocationForCompare } = useLocationQuery();
 
   return (
-    <div className={"h-full"}>
+    <div className={'h-full'}>
       <SingleForecast
         isCompareRoute={true}
         compareLocation={location1}

@@ -1,12 +1,12 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import {
   WeatherForecast,
   WeatherGeoLocation,
-} from "@common/types/types.weather.ts";
-import { useMultiDayForecast } from "@hooks/useMultiDayForecast.ts";
-import { useEffect, useMemo, useRef } from "react";
-import { Card } from "@ui/Card.tsx";
-import { useGetWeatherIcon } from "@hooks/useGetWeatherIcon.ts";
+} from '@common/types/types.weather';
+import { useMultiDayForecast } from '@hooks/useMultiDayForecast';
+import { useEffect, useMemo, useRef } from 'react';
+import { Card } from '@ui/Card';
+import { useGetWeatherIcon } from '@hooks/useGetWeatherIcon';
 
 export function DayForecastDom({
   day,
@@ -24,7 +24,7 @@ export function DayForecastDom({
 
   return (
     <Card key={index} className={`snap-center w-20 shrink-0`}>
-      <h4 className={"font-bold"}>{dayjs(day.date).format("ddd")}</h4>
+      <h4 className={'font-bold'}>{dayjs(day.date).format('ddd')}</h4>
       <div>
         L:{Math.round(day.temperatureMin ?? 0)}
         {units?.temperature_2m_min}
@@ -33,7 +33,7 @@ export function DayForecastDom({
         H:{Math.round(day.temperatureMax ?? 0)}
         {units?.temperature_2m_max}
       </div>
-      <div className={"flex justify-center align-middle"}>
+      <div className={'flex justify-center align-middle'}>
         <img
           alt="Weather icon"
           src={`/weather/${icon}`}
@@ -48,7 +48,7 @@ interface DaysForecastProps {
   selectedLocation: WeatherGeoLocation | null;
 }
 
-const imageSize = "72px";
+const imageSize = '72px';
 
 export function DaysForecast({ selectedLocation }: DaysForecastProps) {
   const { data: fiveDayForecast } = useMultiDayForecast(selectedLocation);
@@ -66,18 +66,18 @@ export function DaysForecast({ selectedLocation }: DaysForecastProps) {
     };
 
     const scrollContainer = scrollContainerRef.current!;
-    scrollContainer.addEventListener("wheel", handleSwipe, { passive: false });
+    scrollContainer.addEventListener('wheel', handleSwipe, { passive: false });
 
     return () => {
-      scrollContainer.removeEventListener("wheel", handleSwipe);
+      scrollContainer.removeEventListener('wheel', handleSwipe);
     };
   }, []);
 
-  return !!selectedLocation ? (
+  return selectedLocation ? (
     <>
-      <h1 className={"text-center"}>5 Day Forecast</h1>
+      <h1 className={'text-center'}>5 Day Forecast</h1>
       <div
-        className={"snap-x snap-mandatory overflow-x-auto pb-2"}
+        className={'snap-x snap-mandatory overflow-x-auto pb-2'}
         ref={scrollContainerRef}
       >
         <div className={`flex gap-2 justify-between w-full lg:justify-center`}>
@@ -95,7 +95,7 @@ export function DaysForecast({ selectedLocation }: DaysForecastProps) {
       </div>
     </>
   ) : (
-    "No location"
+    'No location'
   );
 }
 

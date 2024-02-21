@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { CurrentWeather } from "@common/types/types.weather.ts";
+import { useMemo } from 'react';
+import { CurrentWeather } from '@common/types/types.weather';
 
 /**
  * Hook to compare two sets of weather data.
@@ -10,7 +10,7 @@ import { CurrentWeather } from "@common/types/types.weather.ts";
  */
 export function useWeatherComparison(
   data1: CurrentWeather | null,
-  data2: CurrentWeather | null,
+  data2: CurrentWeather | null
 ) {
   return useMemo(() => {
     // Initialize comparison results with default values
@@ -29,27 +29,27 @@ export function useWeatherComparison(
     }
 
     comparisonResults.temperatureDifference = parseFloat(
-      (data1.temperature_2m - data2.temperature_2m).toFixed(1),
+      (data1.temperature_2m - data2.temperature_2m).toFixed(1)
     );
     comparisonResults.humidityDifference = parseFloat(
       Math.abs(data1.relative_humidity_2m - data2.relative_humidity_2m).toFixed(
-        1,
-      ),
+        1
+      )
     );
     comparisonResults.precipitationDifference = parseFloat(
-      Math.abs(data1.precipitation - data2.precipitation).toFixed(1),
+      Math.abs(data1.precipitation - data2.precipitation).toFixed(1)
     );
     comparisonResults.cloudCoverDifference = parseFloat(
-      Math.abs(data1.cloud_cover - data2.cloud_cover).toFixed(1),
+      Math.abs(data1.cloud_cover - data2.cloud_cover).toFixed(1)
     );
     comparisonResults.snowfallDifference = parseFloat(
-      Math.abs(data1.snowfall - data2.snowfall).toFixed(1),
+      Math.abs(data1.snowfall - data2.snowfall).toFixed(1)
     );
     comparisonResults.windDirectionDifference = parseFloat(
-      Math.abs(data1.wind_direction_10m - data2.wind_direction_10m).toFixed(1),
+      Math.abs(data1.wind_direction_10m - data2.wind_direction_10m).toFixed(1)
     );
     comparisonResults.windSpeedDifference = parseFloat(
-      Math.abs(data1.wind_speed_10m - data2.wind_speed_10m).toFixed(1),
+      Math.abs(data1.wind_speed_10m - data2.wind_speed_10m).toFixed(1)
     );
 
     return comparisonResults;
