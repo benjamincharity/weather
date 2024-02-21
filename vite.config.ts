@@ -36,7 +36,7 @@ export default defineConfig({
 
   base: process.env.VITE_BASE_PATH || '/',
   build: {
-    outDir: './dist/weather',
+    outDir: './dist',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
