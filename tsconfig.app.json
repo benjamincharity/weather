@@ -2,6 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@common/*": ["src/app/common/*"],
+      "@hooks/*": ["src/app/hooks/*"],
+      "@ui/*": ["src/app/components/ui/*"],
+    },
     "types": [
       "node",
       "@nx/react/typings/cssmodule.d.ts",

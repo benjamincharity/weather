@@ -1,7 +1,9 @@
 /// <reference types='vitest' />
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import path from 'node:path';
 
 export default defineConfig({
   root: __dirname,
@@ -17,7 +19,15 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [react(), nxViteTsPaths(), TanStackRouterVite()],
+
+  resolve: {
+    alias: {
+      '@common': path.resolve(__dirname, 'src/app/common'),
+      '@hooks': path.resolve(__dirname, 'src/app/hooks'),
+      '@ui': path.resolve(__dirname, 'src/app/components/ui'),
+    },
+  },
 
   // Uncomment this if you are using workers.
   // worker: {
