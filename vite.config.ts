@@ -34,6 +34,7 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
 
+  base: process.env.VITE_BASE_PATH || '/',
   build: {
     outDir: './dist/weather',
     reportCompressedSize: true,
